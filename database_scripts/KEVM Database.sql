@@ -19,7 +19,7 @@ CREATE TABLE ProductionLine (
 
 CREATE TABLE Shift (
 	ID varchar(50) NOT NULL PRIMARY KEY,
-	ScheduleDate DATE NOT NULL,
+	ShiftType varchar(50) NOT NULL,
 	ShiftCode INT NOT NULL
 );
 
@@ -34,7 +34,7 @@ CREATE TABLE Employee (
 	ID varchar(50) NOT NULL PRIMARY KEY,
 	FirstName varchar(50) NOT NULL,
 	LastName varchar(50) NOT NULL,
-	IsSupervisor BIT DEFAULT 0,
+	IsSupervisor BOOLEAN,
 	PhoneNumber varchar(50),
 	Email varchar(50)
 );
@@ -77,12 +77,13 @@ CREATE TABLE ScanInfo (
 	EmployeeID varchar(50) NOT NULL,
 	WorkStationID varchar(50) NOT NULL,
 	ScanTime Time NOT NULL,
-	ScanType BIT Default 1
+	ScanType BOOLEAN
 );
 
 CREATE TABLE TimeAttendence (
 	EmployeeID varchar(50) NOT NULL,
 	ShiftID varchar(50) NOT NULL,
+    ShiftDate datetime NOT NULL,
 	PaidHours float NOT NULL,
 	Payment float NOT NULL
 );
