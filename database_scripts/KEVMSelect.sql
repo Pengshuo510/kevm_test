@@ -9,11 +9,10 @@ SELECT EmployeeID, PaidHours
 FROM TimeAttendence;
 
 # Earned Hour
-SELECT E.EmployeeID, (TotalQuantity*10/(T.PaidHours * P.AcceptedRate)) AS 'Eartned Hours'
+SELECT E.EmployeeID, (TotalQuantity/P.AcceptedRate) AS 'Earned Hours'
 FROM Quantity Q
 INNER JOIN ProductionSchedule P ON Q.ProductionLineID = P.ProductionLineID
-INNER JOIN EmployeeSchedule E ON Q.WorkstationID = E.WorkstationID
-INNER JOIN TimeAttendence T ON E.EmployeeID = T.EmployeeID;
+INNER JOIN EmployeeSchedule E ON Q.WorkstationID = E.WorkstationID;
 
 # Availability
 SELECT ProductionLineID, ShiftID, (1-(dt/28800)) AS 'Availability'
